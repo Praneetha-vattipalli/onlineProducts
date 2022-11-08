@@ -2,12 +2,13 @@ package com.example.Amazon.products.Controller;
 
 
 import com.example.Amazon.products.Model.Product;
+import com.example.Amazon.products.Repository.Repo;
 import com.example.Amazon.products.Service.ServiceImple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import java.util.List;
+
 
 @RestController
 @RequestMapping("api/products")
@@ -15,12 +16,16 @@ public class Control {
 
 
     @Autowired
-    private ServiceImple si;
+     ServiceImple si;
+
+   @Autowired
+   Repo repo;
 
     @PostMapping("/getProd")
-    public String addProduct(@RequestBody Product product){
-        si.addProduct(product);
-        return "added";
+    public Product addProduct(@RequestBody Product product){
+        Product p= si.addProduct(product);
+        return p;
+
     }
     @DeleteMapping("/deleteProd/{pId}")
     public String  DeleteProduct(@PathVariable(value="pId") int pId)
@@ -29,14 +34,20 @@ public class Control {
         return s;
     }
     @PutMapping("/update/{pId}")
-    public String UpdateProduct(@PathVariable(value="pId") int pId,@RequestBody  Product prod){
-        si.UpdateProduct(pId,prod);
-        return "updated";
+    public Product UpdateProduct(@PathVariable(value="pId") int pId,@RequestBody  Product prod){
+       Product p= si.UpdateProduct(pId,prod);
+        return p;
     }
     @GetMapping("/search/{pName}")
     public Product searchProduct(@PathVariable(value=" pName") String pName){
         Product s= si.searchProduct(pName);
         return s;
+    }
+    @GetMapping("/getAll")
+    public List<Product> allProducts(){
+        List<Product> p=si.AllProducts();
+        return p;
+
     }
 
 }
