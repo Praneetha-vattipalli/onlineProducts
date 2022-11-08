@@ -18,8 +18,7 @@ public class Control {
     @Autowired
      ServiceImple si;
 
-   @Autowired
-   Repo repo;
+
 
     @PostMapping("/getProd")
     public Product addProduct(@RequestBody Product product){
@@ -39,7 +38,7 @@ public class Control {
         return p;
     }
     @GetMapping("/search/{pName}")
-    public Product searchProduct(@PathVariable(value=" pName") String pName){
+    public Product searchProduct(@PathVariable String pName){
         Product s= si.searchProduct(pName);
         return s;
     }

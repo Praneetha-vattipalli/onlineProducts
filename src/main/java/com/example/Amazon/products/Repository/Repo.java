@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface Repo extends JpaRepository<Product,Integer> {
-    @Modifying
+
     @Query("select p from Product p where p.pName = ?1")
     Product findBypName(@Param("pName")String pName);
 
