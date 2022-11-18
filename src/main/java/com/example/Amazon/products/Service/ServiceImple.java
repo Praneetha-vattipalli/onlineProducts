@@ -4,11 +4,14 @@ package com.example.Amazon.products.Service;
 
 import com.example.Amazon.products.Model.Product;
 import com.example.Amazon.products.Repository.Repo;
+import com.example.Amazon.products.VO.Rate;
+import com.example.Amazon.products.VO.ResponseTemplate;
+import org.reactivestreams.Publisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
@@ -17,13 +20,10 @@ public class ServiceImple implements ServiceInfo {
 
     @Autowired
      Repo repo;
-
-
-
-
     @Override
     public Product addProduct(Product product) {
-        return repo.save(product);
+        Product p=repo.save(product);
+        return p;
     }
 
     @Override
@@ -61,6 +61,17 @@ public class ServiceImple implements ServiceInfo {
     public List<Product> AllProducts() {
         List<Product> p= repo.findAll();
         return p;
+    }
+    @Autowired
+    RestTemplate restTemplate;
+    public ResponseTemplate Product(int  pId){
+        ResponseTemplate r=new ResponseTemplate();
+       Product product = repo.findById(pId).get();
+        Rate rate= restTemplate.getForObject("http://RATE-SERVICE/api/rating/" +  product.getPId(),Rate.class);
+        r.setProduct(product);
+        r.setRate(rate);
+
+        return r;
     }
 
 

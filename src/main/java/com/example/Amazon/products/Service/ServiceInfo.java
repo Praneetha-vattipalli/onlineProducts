@@ -1,12 +1,13 @@
 package com.example.Amazon.products.Service;
 
 import com.example.Amazon.products.Model.Product;
+import org.reactivestreams.Publisher;
 
 import java.util.List;
 
 
 public interface ServiceInfo {
-    public Product addProduct(Product product);
+    public Product  addProduct(Product product);
     public String  DeleteProduct(int pId);
     public Product UpdateProduct(int pId,Product prod);
     public Product searchProduct(String pName);
