@@ -1,5 +1,8 @@
-FROM openjdk:11
+FROM openjdk11:latest
 
-ADD target/springboot-docker31.jar springboot-docker31.jar
-COPY ${JAR_FILE} springboot-docker31.jar
-ENTRYPOINT {"java","-jar","springboot-docker31.jar"}
+ARG APP_NAME="product-service"
+ARG APP_VERSION="0.0.1"
+ARG JAR_FILE="/build/libs/product-service.0.0.1.jar"
+
+COPY /build/libs/product-service.0.0.1.jar app.jar
+ENTRYPOINT ["java","-jar", "app.jar"]
