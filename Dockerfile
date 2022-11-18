@@ -1,4 +1,4 @@
-FROM openjdk11:latest
+FROM adoptopenjdk/openjdk11:alpine-jre
 
 ARG APP_NAME="product-service"
 ARG APP_VERSION="0.0.1"
