@@ -48,6 +48,11 @@ public class Control {
         return p;
 
     }
+    @GetMapping("/")
+    public String  get(){
+        return "hi";
+
+    }
     @GetMapping("{pId}")
     public ResponseTemplate GetProduct(@PathVariable(value = "pId") int pId) {
 
