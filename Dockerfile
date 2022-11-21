@@ -1,8 +1,8 @@
-FROM adoptopenjdk/openjdk11:alpine-jre
+FROM dargiri/builder-openjdk17
 
 ARG APP_NAME="product-service"
 ARG APP_VERSION="0.0.1"
-ARG JAR_FILE="/product-service.0.0.1.jar"
+ARG JAR_FILE="target/Amazon.products-0.0.1-SNAPSHOT.jar"
 
-COPY target/product-service.0.0.1.jar product-service.0.0.1.jar
-ENTRYPOINT ["java","-jar", "product-service.0.0.1.jar"]
+COPY ${JAR_FILE} app1.jar
+ENTRYPOINT ["java","-jar", "app1.jar"]
