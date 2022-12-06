@@ -3,7 +3,7 @@ node {
     checkout scm
   }
   stage('SonarQube Analysis') {
-    def mvn = tool 'sonarqube';
+    def scannerHome = tool 'sonarqube';
 
     withSonarQubeEnv() {
       sh "${mvn}/bin/mvn clean verify sonar:sonar -D sonar.projectKey=Rate"
