@@ -10,7 +10,7 @@ node {
       -D sonar.login=admin \
       -D sonar.password=Suneetha@16 \
       -D sonar.projectKey=Rate \
-      -D sonar.exclusions=vendor/**, resources/**,**/*.java \
+      -D sonar.exclusions=com.example.rate/**, resources/**,**/*.java \
       -D sonar.host.url=http://localhost:9000/"
     }
   }
